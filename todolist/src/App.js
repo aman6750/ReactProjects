@@ -4,6 +4,7 @@ import Header from './MyComponents/Header';
 import { Footer } from './MyComponents/Footer';
 import {TodoItem} from './MyComponents/TodoItem';
 import { Todos } from './MyComponents/Todos';
+import { AddTodo } from './MyComponents/AddTodo';
 import React, { useState } from 'react';
 
 function App() {
@@ -44,6 +45,7 @@ function App() {
   return (
     <>
     <Header title="My Todos List" searchBar={false}/>
+    <AddTodo />
     <Todos todos={todos} onDelete={onDelete}/>
     <Footer/>
     </>

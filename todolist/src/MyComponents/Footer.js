@@ -4,8 +4,9 @@ export const Footer = () => {
 
     let footerStyle = {
         position: "absolute",
+        position:"sticky",
         width: "100%",
-        top: "90vh"
+        top: "100vh"
     }
 
     return (
