@@ -3,10 +3,9 @@ import React from 'react'
 export const Footer = () => {
 
     let footerStyle = {
-        position: "absolute",
-        position:"sticky",
+        position: "relative",
         width: "100%",
-        top: "100vh"
+        top: "70vh"
     }
 
     return (

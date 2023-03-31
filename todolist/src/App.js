@@ -5,9 +5,16 @@ import { Footer } from './MyComponents/Footer';
 import {TodoItem} from './MyComponents/TodoItem';
 import { Todos } from './MyComponents/Todos';
 import { AddTodo } from './MyComponents/AddTodo';
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 
 function App() {
+
+    let initTodo;
+      if(localStorage.getItem("todos")===null){
+        initTodo = [];
+      }else{
+        initTodo  = JSON.parse(localStorage.getItem("todo"));
+      }
 
     const onDelete = (todo)=>{
         console.log("i am on delete", todo);
@@ -18,34 +25,42 @@ function App() {
         setTodos(todos.filter((ee)=>{
           return ee!==todo;
         }));
+        localStorage.setItem("todos",JSON.stringify(todos));
 
     }
 
-    const [todos, setTodos] = useState([
-      {
-        sno:1,
-        title: "Go to the market",
-        desc: "you need to go to the market to get this job done "
-      },
-      {
-        sno:2,
-        title: "Go to the mall",
-        desc: "you need to go to the mall to get this job done "
-      },
-      {
-        sno:3,
-        title: "Go to the charbagh",
-        desc: "you need to go to the charbagh to get this job done "
-      },
-  
-    ]);
+    const addTodo=(title,desc)={
+      console.log("hello" ,title,desc)
+      let sno;
+        if(todos.length==0){
+          sno=0;
+        }else{
+          sno = todos[todos.length-1].sno+1;
+        }      
+      const myTodo = {
+        sno:sno,
+        title :title,
+        desc: desc,
+      }
+      setTodos([...todos,myTodo]);
+      console.log(myTodo);
 
+     
+
+
+  }
+
+    const [todos, setTodos] = useState([initTodo]);
+
+      useEffect(()=>{
+        localStorage.setItem("todos",JSON.stringify(todos));
+      },[todos]) 
   
 
   return (
     <>
     <Header title="My Todos List" searchBar={false}/>
-    <AddTodo />
+    <AddTodo addTodo={addTodo}/>
     <Todos todos={todos} onDelete={onDelete}/>
     <Footer/>
     </>
