@@ -36,3 +36,21 @@
     transform: rotate(360deg);
   }
 }
+
+
+.one button {
+  background-color: red;
+}
+
+
+.four button{
+  background-color: aquamarine;
+}
+
+.class1{
+  background-color: black;
+}
+
+.class2{
+  background-color:  yellow;
+}
